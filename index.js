@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // Proxy Deezer API requests
 app.get('/deezer/*', async (req, res) => {
     try {
-        const deezerApiUrl = `https://api.deezer.com/${req.params[0]}`;
+        const deezerApiUrl = `https://api.deezer.com/${req.params[0]}?${req._parsedUrl.query || ''}`;
         const response = await axios.get(deezerApiUrl);
         res.json(response.data);
     } catch (error) {
